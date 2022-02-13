@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp</title>
+    <link rel="stylesheet" href="./common.css">
+</head>
+<body>
+    <div class="container">
+
+
+        <div id="contents">
+            <br>
+            <br>
+            <h2>Notes App</h2>
+            <p>Take notes and never forget.</p>
+            <br>
+
+            <div id="noteList">
+                <div class="flex ">
+                    <input type="text"  placeholder="Search" id="search"> 
+                </div>
+                <div id="result">
+                    <p id="result_text">No Result</p>
+                    <div id="notebox">
+
+                    </div>
+                </div>
+            <!-- 새로 만든 메모가 div로 표시 나게 됨 -->
+                <div class="button">
+                    <input type="button" value="Create Note" id="create_btn">
+                </div>
+           </div>
+
+           <div id="writeNote">
+                <input type="button" value="Back" id="back_btn"><br><br>
+                <div class="writeContents">
+                    <input type="text" placeholder="제목" id="title">
+                    <div id="wcontents">
+                        <textarea rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+                    </div>
+                </div>
+                <div class="remove_done_btn">
+                    <input type="button" value="Remove Note" id="remove_btn">
+                    <input type="button" value="done" id="done_btn">
+                </div>
+           </div>
+        </div>
+    </div>
+</body>
+<script src="./common.js"></script>
+</html>
