@@ -9,6 +9,7 @@ const writeNote = document.getElementById("writeNote")
 create_btn.addEventListener("click", function(){
     noteList.style.display = "none"
     writeNote.style.display = "block"
+    done_btn.style.display = "block"
     //전에 작성했던 내용 초기화 
     content.value = "" 
     title.value =""
@@ -47,18 +48,51 @@ done_btn.addEventListener("click",function(){
 
     create_div.appendChild(create_p)
     
-    const notebox = document.getElementById("notebox")
-    notebox.appendChild(create_div)
+    const newNoteList = document.getElementById("newNoteList") //ul
+    let create_li = document.createElement("li") // li생성
+    let a =  newNoteList.appendChild(create_li)//ul > li넣기
 
+    a.appendChild(create_div)
+
+ 
+   //ul 자식 요소의 개수 
+//    //let elecount = newNoteList.childElementCount
+//    console.log(newNoteList.children)
+   
+    for(let i = 0; i< newNoteList.children.length; i++){
+        newNoteList.children[i].addEventListener("click",function(){
+            console.log(i +"번째 클릭하셨습니다.!!!!!!")
+            console.log(arr[i].title)
+            console.log(arr[i].content)
+
+            noteList.style.display = "none"
+            writeNote.style.display = "block"
+            done_btn.style.display = "none"
+            title.value = arr[i].title
+            content.value = arr[i].content
+
+            
+        const remove_btn = document.getElementById("remove_btn")
+            remove_btn.addEventListener("click", function(){
+            console.log(newNoteList.children[i].remove())
+            console.log(i)
+            
+            noteList.style.display = "block"
+            writeNote.style.display = "none"
+
+            delete arr[i]
+            })
+        })
+    }
+
+   
+    //arr에서 받을 인수
     save(title.value ,content.value)
     
 })
 
-let notebox = document.getElementById("newNote")
-let arr = []
 
+let arr = []
 function save(title , content){
     arr.push({title, content})
 }
-
-
