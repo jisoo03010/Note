@@ -24,9 +24,10 @@ back_btn.addEventListener("click", function(){
 
 const done_btn = document.getElementById("done_btn")
 
+    
 let title = document.getElementById("title") // 제목
 let content = document.getElementById("content") //내용
-
+const newNoteList = document.getElementById("newNoteList") //ul
 //만약 title, contents부분의 글이 있고 done을 클릭할때마다 
 //새로운 div생성 
 done_btn.addEventListener("click",function(){
@@ -44,44 +45,50 @@ done_btn.addEventListener("click",function(){
     create_div.id = "newNote"
 
     let create_p = document.createElement("p")
+    let create_input = document.createElement("input")
+    create_input.id = "remove"
+    create_input.setAttribute('type', 'button');
+    create_input.value = "remove"
     create_p.innerText = title.value   
 
     create_div.appendChild(create_p)
+    create_div.appendChild(create_input)
     
-    const newNoteList = document.getElementById("newNoteList") //ul
+    
     let create_li = document.createElement("li") // li생성
     let a =  newNoteList.appendChild(create_li)//ul > li넣기
 
     a.appendChild(create_div)
-
- 
+    
+        create_input.addEventListener("click", function(){
+            
+                if(document.getElementById("newNote")){
+                    for(let i = 0; i< 10; i++){    
+                        create_li.remove()
+                        console.log(i)
+                        break
+                    }
+                }else{
+                    console.log("삭제할 내용이 있음")
+                }   
+        })
    //ul 자식 요소의 개수 
 //    //let elecount = newNoteList.childElementCount
 //    console.log(newNoteList.children)
    
     for(let i = 0; i< newNoteList.children.length; i++){
+        
         newNoteList.children[i].addEventListener("click",function(){
-            console.log(i +"번째 클릭하셨습니다.!!!!!!")
-            console.log(arr[i].title)
-            console.log(arr[i].content)
+       
+           
 
-            noteList.style.display = "none"
-            writeNote.style.display = "block"
-            done_btn.style.display = "none"
+            // noteList.style.display = "none"
+            // writeNote.style.display = "block"
+            // done_btn.style.display = "none"
             title.value = arr[i].title
             content.value = arr[i].content
 
-            
-        const remove_btn = document.getElementById("remove_btn")
-            remove_btn.addEventListener("click", function(){
-            console.log(newNoteList.children[i].remove())
-            console.log(i)
-            
-            noteList.style.display = "block"
-            writeNote.style.display = "none"
-
-            delete arr[i]
-            })
+          
         })
     }
 
@@ -90,6 +97,7 @@ done_btn.addEventListener("click",function(){
     save(title.value ,content.value)
     
 })
+
 
 
 let arr = []
